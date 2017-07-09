@@ -20,15 +20,15 @@ class Node(object):
     
     def getMinValue(self):
         if self.leftChild is None:
-            return self.leftChild
+            return self.data
         else:
-            self.leftChild.getMinValue()
+            return self.leftChild.getMinValue()
             
     def getMaxValue(self):
         if self.rightChild is None:
-            return self.rightChild
+            return self.data
         else:
-            self.rightChild.getMinValue()        
+            return self.rightChild.getMaxValue()        
     
     def getTraverseInOrder(self) :
         
@@ -58,7 +58,7 @@ class Node(object):
                     else:
                         temp=self.rightChild
                         
-                    parentNode=self.rightChild
+                    parentNode.leftChild=temp
                 
                 elif parentNode.rightChild == self:
                     if self.leftChild is not None:

@@ -1,6 +1,6 @@
 from BinarySerachTree_def.Node import Node
 
-def BinaryTree(object):
+class BinaryTreeS(object):
     
     def __init__(self):
         self.rootNode=None
@@ -16,7 +16,9 @@ def BinaryTree(object):
             if self.rootNode.data == dataRemove:
                 temp=Node(None)
                 temp.leftChild=self.rootNode
-                self.rootNode.remove(dataRemove,None)
+                self.rootNode.remove(dataRemove,temp)
+            else:
+                self.rootNode.remove(dataRemove, None)
     
     def getMax(self):
         if self.rootNode:
