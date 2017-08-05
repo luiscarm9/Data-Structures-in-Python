@@ -38,11 +38,11 @@ class Balancedtree(object):
                 
     
     def setBalanced(self,node):
-        node.balanced=self.height(node.rightChild-self.height(node.leftChild))
+        node.balanced=(self.height(node.rightChild)-self.height(node.leftChild))
         
     def height(self,node):
         
-        if Node==None:
+        if node==None:
             return -1
         else:
             return 1+max(self.height(node.leftChild),self.height(node.rightChild))
@@ -63,21 +63,21 @@ class Balancedtree(object):
         print 'Left Rotation'
         
         temp=node.rightChild
-        temp.parenNode=node.parentNode
+        temp.parentNode=node.parentNode
         
         node.rightChild=temp.leftChild
         
         if node.rightChild is not None:
-            node.rightChild.parenNode=node
+            node.rightChild.paretnNode=node
         
         temp.leftChild=node
         node.parentNode=temp
         
-        if temp.parenNode is not None:
-            if temp.parenNode.rightChild==node:
-                temp.parenNode.rightChild=temp
+        if temp.parentNode is not None:
+            if temp.parentNode.rightChild==node:
+                temp.parentNode.rightChild=temp
             else:
-                temp.parenNode.rightChild=temp
+                temp.parentNode.rightChild=temp
         
         self.setBalanced(temp)
         self.setBalanced(node)
@@ -89,21 +89,21 @@ class Balancedtree(object):
         print 'Right Rotation'
         
         temp=node.leftChild
-        temp.parenNode=node.parentNode
+        temp.parentNode=node.parentNode
         
         node.leftChild=temp.rightChild
         
         if node.leftChild is not None:
-            node.leftChild.parenNode=node
+            node.leftChild.parentNode=node
         
         temp.rightChild=node
         node.parentNode=temp
         
-        if temp.parenNode is not None:
-            if temp.parenNode.rightChild==node:
-                temp.parenNode.rightChild=temp
+        if temp.parentNode is not None:
+            if temp.parentNode.rightChild==node:
+                temp.parentNode.rightChild=temp
             else:
-                temp.parenNode.leftChild=temp
+                temp.parentNode.leftChild=temp
         
         self.setBalanced(temp)
         self.setBalanced(node)
