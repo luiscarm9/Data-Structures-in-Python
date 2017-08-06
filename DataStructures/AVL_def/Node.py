@@ -2,7 +2,7 @@ class Node(object):
     
     def __init__(self,data,parentNode):
         self.data=data
-        self.parenNode=parentNode
+        self.parentNode=parentNode
         self.rightChild=None
         self.leftChild=None
         self.balanced=0
