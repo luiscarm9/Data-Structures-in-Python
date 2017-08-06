@@ -8,8 +8,7 @@ class Heap(object):
         self.currentposition=-1
     
     
-    def insert(self,item):
-        
+    def insert(self,item):        
         if self.isFull():
             print 'WARNING: Heap is full'
             return
@@ -24,8 +23,7 @@ class Heap(object):
         else:
             return False
     
-    def fixUp(self,index):
-        
+    def fixUp(self,index):        
         parentIndex=int((index-1)/2)
         
         while parentIndex>=0 and self.heap[parentIndex]<self.heap[index]:
@@ -34,7 +32,40 @@ class Heap(object):
             self.heap[parentIndex]=temp
             index=parentIndex
             parentIndex=int((index-1)/2)
-    
+            
+            
+    def fixDown(self,index,upindex):        
+        if upindex<0:
+            upindex=self.currentposition
+        
+        while index<=upindex:
+            leftChild=2*index+1
+            rightChild=2*index+2
+            
+            if leftChild<=upindex:
+                childSwap=None
+                
+                if rightChild>upindex:
+                    childSwap=leftChild
+                else:
+                    if self.heap[leftChild]>self.heap[rightChild]:
+                        childSwap=leftChild
+                    else:
+                        childSwap=rightChild
+                
+                if self.heap[index]<self.heap[childSwap]:
+                    temp=self.heap[index]
+                    self.heap[index]=self.heap[childSwap]
+                    self.heap[childSwap]=temp
+                else:
+                    break
+                
+                index=childSwap
+            
+            else:
+                break       
+                
+            
     def getMax(self):
         result=self.heap[0]
         self.currentposition=self.currentposition-1
@@ -43,4 +74,13 @@ class Heap(object):
         self.fixDown(0,-1)       
         return result
                     
+    
+    def heapSort(self):        
+        for i in range(0,self.currentposition+1):
+            temp=self.heap[0]
+            print("%d"%temp)
+            self.heap[0]=self.heap[self.currentposition-i]
+            self.heap[self.currentposition-i]=temp
+            self.fixDown(0, self.currentposition-i-1)
+            
     
